@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>FIRST LINE — Аренда коммерческих помещений в Санкт-Петербурге</title>
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                            <style>
+                                :root {
+                                    --color-bg: #f9f7f4;
+                                    --color-surface: #f2ede8;
+                                    --color-surface-2: #ece6df;
+                                    --color-border: rgba(0,0,0,0.10);
+                                    --color-text: #1a1714;
+                                    --color-text-muted: #6b6460;
+                                    --color-text-faint: #b0aaa5;
+                                    --color-accent: #1a1714;
+                                    --color-accent-gold: #b89a6a;
+                                    --font-display: 'Cormorant Garamond', Georgia, serif;
+                                    --font-body: 'Manrope', 'Helvetica Neue', sans-serif;
+                                    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+                                    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+                                    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+                                    --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+                                    --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+                                    --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+                                    --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+                                    --text-hero: clamp(3rem, 0.5rem + 7vw, 8rem);
+                                    --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+                                    --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+                                    --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+                                    --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem; --radius-xl: 1rem;
+                                    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+                                    --shadow-md: 0 4px 16px rgba(0,0,0,0.07);
+                                    --shadow-lg: 0 12px 40px rgba(0,0,0,0.10);
+                                    --transition: 220ms cubic-bezier(0.16,1,0.3,1);
+                                }
+                                *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+                                html{scroll-behavior:smooth;scroll-padding-top:var(--space-20);}
+                                body{font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased;line-height:1.65;}
+                                img,svg{display:block;max-width:100%;}
+                                h1,h2,h3,h4{text-wrap:balance;line-height:1.1;font-family:var(--font-display);}
+                                p,li{text-wrap:pretty;max-width:72ch;}
+                                a{color:inherit;text-decoration:none;transition:color var(--transition),opacity var(--transition);}
+                                button{cursor:pointer;font:inherit;color:inherit;border:none;background:none;}
+                                ul[role="list"]{list-style:none;}
+                                
+                                /* ── LAYOUT ── */
+                                .container{max-width:1160px;margin-inline:auto;padding-inline:var(--space-6);}
+                                .container--narrow{max-width:780px;margin-inline:auto;padding-inline:var(--space-6);}
+                                
+                                /* ── NAV ── */
+                                .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:var(--space-4) var(--space-6);display:flex;align-items:center;justify-content:space-between;transition:background var(--transition),box-shadow var(--transition);}
+                                .nav.scrolled{background:rgba(249,247,244,0.94);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,0.07);}
+                                .nav__logo{font-family:var(--font-display);font-size:1.55rem;font-weight:700;letter-spacing:0.04em;color:var(--color-text);}
+                                .nav__logo span{color:var(--color-accent-gold);}
+                                .nav__links{display:flex;gap:var(--space-8);align-items:center;}
+                                .nav__links a{font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);}
+                                .nav__links a:hover{color:var(--color-text);}
+                                .nav__cta{background:var(--color-text);color:#fff;padding:0.55rem 1.4rem;border-radius:var(--radius-full,999px);font-size:var(--text-sm);font-weight:600;transition:background var(--transition),transform var(--transition);}
+                                .nav__cta:hover{background:#3a342e;transform:translateY(-1px);}
+                                
+                                /* ── HERO ── */
+                                .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:var(--space-20);background:#1a1714;position:relative;overflow:hidden;}
+                                .hero__bg{position:absolute;inset:0;background:linear-gradient(160deg,#2a2420 0%,#1a1714 50%,#0e0c0a 100%);}
+                                .hero__grain{position:absolute;inset:0;opacity:0.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;}
+                                .hero__vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.55) 100%);}
+                                .hero__content{position:relative;z-index:2;padding-inline:var(--space-6);}
+                                .hero__tag{display:inline-block;font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-gold);margin-bottom:var(--space-6);}
+                                .hero__title{font-family:var(--font-display);font-size:var(--text-hero);font-weight:700;color:#f5f0e8;line-height:1.0;margin-bottom:var(--space-6);max-width:14ch;}
+                                .hero__title em{font-style:normal;color:var(--color-accent-gold);}
+                                .hero__sub{font-size:var(--text-lg);color:rgba(245,240,232,0.55);max-width:50ch;margin-bottom:var(--space-10);font-weight:300;line-height:1.6;}
+                                .hero__actions{display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center;}
+                                .btn-primary{background:#f5f0e8;color:#1a1714;padding:0.85rem 2.2rem;border-radius:999px;font-size:var(--text-sm);font-weight:700;letter-spacing:0.02em;transition:background var(--transition),transform var(--transition),box-shadow var(--transition);}
+                                .btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.25);}
+                                .btn-ghost{border:1px solid rgba(245,240,232,0.25);color:rgba(245,240,232,0.75);padding:0.85rem 2.2rem;border-radius:999px;font-size:var(--text-sm);font-weight:600;transition:border-color var(--transition),color var(--transition);}
+                                .btn-ghost:hover{border-color:rgba(245,240,232,0.6);color:#f5f0e8;}
+                                .hero__stats{position:absolute;bottom:var(--space-10);right:var(--space-8);z-index:2;display:flex;gap:var(--space-8);}
+                                .hero__stat{text-align:right;}
+                                .hero__stat-num{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:#f5f0e8;line-height:1;}
+                                .hero__stat-label{font-size:var(--text-xs);color:rgba(245,240,232,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.25rem;}
+                                
+                                /* ── SECTIONS ── */
+                                section{padding-block:clamp(var(--space-16),8vw,var(--space-24));}
+                                .section-label{font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-gold);margin-bottom:var(--space-4);}
+                                .section-title{font-size:var(--text-2xl);font-weight:700;line-height:1.1;margin-bottom:var(--space-8);}
+                                .section-sub{font-size:var(--text-base);color:var(--color-text-muted);max-width:52ch;line-height:1.7;}
+                                
+                                /* ── ОБЪЕКТЫ КАРТОЧКИ ── */
+                                .objects{background:var(--color-bg);}
+                                .objects__header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:var(--space-12);}
+                                .objects__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:var(--space-6);}
+                                .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;transition:transform var(--transition),box-shadow var(--transition);}
+                                .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+                                .card__img{aspect-ratio:16/9;background:var(--color-surface-2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+                                .card__img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#2a2420 0%,#3d3530 100%);display:flex;align-items:center;justify-content:center;}
+                                .card__img-placeholder svg{opacity:0.18;}
+                                .card__badge{position:absolute;top:var(--space-3);left:var(--space-3);background:rgba(26,23,20,0.85);color:#f5f0e8;font-size:var(--text-xs);font-weight:600;padding:0.3rem 0.7rem;border-radius:999px;backdrop-filter:blur(6px);}
+                                .card__body{padding:var(--space-6);}
+                                .card__address{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-2);}
+                                .card__metro{font-size:var(--text-xs);color:var(--color-accent-gold);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-1);}
+                                .card__metro::before{content:"М";display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--color-accent-gold);color:#fff;border-radius:3px;font-size:0.65rem;font-family:var(--font-body);font-weight:700;}
+                                .card__params{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-5);}
+                                .card__param-label{font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:0.08em;}
+                                .card__param-val{font-size:var(--text-sm);font-weight:600;color:var(--color-text);margin-top:2px;}
+                                .card__divider{height:1px;background:var(--color-border);margin-bottom:var(--space-5);}
+                                .card__advantages{display:flex;flex-direction:column;gap:var(--space-2);}
+                                .card__adv-item{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);}
+                                .card__adv-item::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--color-accent-gold);flex-shrink:0;}
+                                .card__footer{padding:var(--space-4) var(--space-6);border-top:1px solid var(--color-border);display:flex;justify-content:flex-end;}
+                                .card__btn{font-size:var(--text-xs);font-weight:700;letter-spacing:0.06em;color:var(--color-text);text-transform:uppercase;display:flex;align-items:center;gap:var(--space-2);transition:gap var(--transition);}
+                                .card__btn:hover{gap:var(--space-3);}
+                                .card__btn svg{width:16px;height:16px;}
+                                
+                                /* ── ПРЕИМУЩЕСТВА ── */
+                                .why{background:var(--color-surface);}
+                                .why__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:var(--space-6);margin-top:var(--space-12);}
+                                .why__item{padding:var(--space-6);background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-xl);}
+                                .why__icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--color-text);border-radius:var(--radius-md);margin-bottom:var(--space-4);}
+                                .why__icon svg{width:24px;height:24px;color:#f5f0e8;}
+                                .why__title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-2);}
+                                .why__text{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.65;}
+                                
+                                /* ── УСЛОВИЯ ── */
+                                .terms{background:var(--color-bg);}
+                                .terms__inner{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center;}
+                                .terms__list{display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-8);}
+                                .terms__item{display:flex;gap:var(--space-4);padding:var(--space-5);background:var(--color-surface);border-radius:var(--radius-lg);border:1px solid var(--color-border);}
+                                .terms__item-num{font-family:var(--font-display);font-size:var(--text-xl);font-weight:700;color:var(--color-accent-gold);line-height:1;flex-shrink:0;}
+                                .terms__item-body{}
+                                .terms__item-title{font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-1);}
+                                .terms__item-text{font-size:var(--text-sm);color:var(--color-text-muted);}
+                                .terms__visual{background:linear-gradient(160deg,#2a2420,#1a1714);border-radius:var(--radius-xl);padding:var(--space-10);display:flex;flex-direction:column;gap:var(--space-6);}
+                                .terms__stat{border-bottom:1px solid rgba(255,255,255,0.07);padding-bottom:var(--space-5);}
+                                .terms__stat:last-child{border-bottom:none;padding-bottom:0;}
+                                .terms__stat-val{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:#f5f0e8;}
+                                .terms__stat-label{font-size:var(--text-xs);color:rgba(245,240,232,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-top:var(--space-1);}
+                                
+                                /* ── CTA БЛОК ── */
+                                .cta-section{background:var(--color-text);color:#f5f0e8;text-align:center;padding-block:clamp(var(--space-16),8vw,var(--space-24));}
+                                .cta-section .section-label{color:var(--color-accent-gold);}
+                                .cta-section .section-title{color:#f5f0e8;max-width:18ch;margin-inline:auto;margin-bottom:var(--space-6);}
+                                .cta-section .section-sub{color:rgba(245,240,232,0.5);margin-inline:auto;margin-bottom:var(--space-10);}
+                                .cta__form{display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;}
+                                .cta__input{flex:1 1 260px;max-width:380px;background:rgba(245,240,232,0.08);border:1px solid rgba(245,240,232,0.18);color:#f5f0e8;padding:0.85rem 1.4rem;border-radius:999px;font:inherit;font-size:var(--text-sm);outline:none;transition:border-color var(--transition);}
+                                .cta__input::placeholder{color:rgba(245,240,232,0.35);}
+                                .cta__input:focus{border-color:rgba(245,240,232,0.5);}
+                                .cta__submit{background:#f5f0e8;color:#1a1714;padding:0.85rem 2.2rem;border-radius:999px;font:inherit;font-size:var(--text-sm);font-weight:700;cursor:pointer;transition:background var(--transition),transform var(--transition);}
+                                .cta__submit:hover{background:#fff;transform:translateY(-2px);}
+                                
+                                /* ── FOOTER ── */
+                                .footer{background:var(--color-surface);border-top:1px solid var(--color-border);padding-block:var(--space-12);}
+                                .footer__inner{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:var(--space-8);}
+                                .footer__brand{font-family:var(--font-display);font-size:1.4rem;font-weight:700;letter-spacing:0.04em;margin-bottom:var(--space-2);}
+                                .footer__brand span{color:var(--color-accent-gold);}
+                                .footer__tagline{font-size:var(--text-xs);color:var(--color-text-faint);}
+                                .footer__col-title{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-faint);margin-bottom:var(--space-4);}
+                                .footer__links{display:flex;flex-direction:column;gap:var(--space-2);}
+                                .footer__links a{font-size:var(--text-sm);color:var(--color-text-muted);}
+                                .footer__links a:hover{color:var(--color-text);}
+                                .footer__bottom{margin-top:var(--space-10);padding-top:var(--space-6);border-top:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-4);}
+                                .footer__copy{font-size:var(--text-xs);color:var(--color-text-faint);}
+                                
+                                /* ── REVEAL ANIMATION ── */
+                                .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease;}
+                                .reveal.visible{opacity:1;transform:none;}
+                                
+                                /* ── MOBILE ── */
+                                @media(max-width:768px){
+                                    .nav__links{display:none;}
+                                    .hero__stats{display:none;}
+                                    .objects__header{flex-direction:column;align-items:flex-start;gap:var(--space-4);}
+                                    .terms__inner{grid-template-columns:1fr;}
+                                }
+                                @media(max-width:480px){
+                                    .hero__title{font-size:clamp(2.5rem,10vw,4rem);}
+                                    .cta__form{flex-direction:column;align-items:stretch;}
+                                    .cta__input,.cta__submit{max-width:100%;}
+                                }
+                            </style>
+    </head>
+    <body>
+        
+        <!-- NAV -->
+        <nav class="nav" id="nav">
+            <a href="#" class="nav__logo">FIRST <span>LINE</span></a>
+            <div class="nav__links">
+                <a href="#objects">Объекты</a>
+                <a href="#why">Преимущества</a>
+                <a href="#terms">Условия</a>
+                <a href="#contact" class="nav__cta">Связаться</a>
+            </div>
+        </nav>
+        
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero__bg"></div>
+            <div class="hero__grain"></div>
+            <div class="hero__vignette"></div>
+            <div class="hero__content container">
+                <div class="hero__tag reveal">Аренда коммерческих помещений · Санкт-Петербург · 2026</div>
+                <h1 class="hero__title reveal">Помещения <em>первой</em> линии</h1>
+                <p class="hero__sub reveal">Коммерческая недвижимость в жилых комплексах бизнес-класса — витринные пространства с высокими потолками и готовой чистовой отделкой.</p>
+                <div class="hero__actions reveal">
+                    <a href="#objects" class="btn-primary">Смотреть объекты</a>
+                    <a href="#contact" class="btn-ghost">Получить предложение</a>
+                </div>
+            </div>
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <div class="hero__stat-num">5</div>
+                    <div class="hero__stat-label">Объектов</div>
+                </div>
+                <div class="hero__stat">
+                    <div class="hero__stat-num">3,5 м</div>
+                    <div class="hero__stat-label">Высота потолков</div>
+                </div>
+                <div class="hero__stat">
+                    <div class="hero__stat-num">84–156 м²</div>
+                    <div class="hero__stat-label">Площади</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ОБЪЕКТЫ -->
+        <section class="objects" id="objects">
+            <div class="container">
+                <div class="objects__header">
+                    <div>
+                        <div class="section-label reveal">Актуальные объекты</div>
+                        <h2 class="section-title reveal">Свободные помещения<br>в лучших локациях города</h2>
+                    </div>
+                    <a href="#contact" class="btn-primary" style="white-space:nowrap;flex-shrink:0;" aria-label="Запросить все объекты">Запросить все</a>
+                </div>
+                
+                <div class="objects__grid">
+                    
+                    <!-- CARD 1 -->
+                    <article class="card reveal">
+                        <div class="card__img">
+                            <div class="card__img-placeholder">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                            </div>
+                            <span class="card__badge">Васильевский остров</span>
+                        </div>
+                        <div class="card__body">
+                            <div class="card__address">26-я линия В.О., 7</div>
+                            <div class="card__metro">Горный институт</div>
+                            <div class="card__params">
+                                <div><div class="card__param-label">Площадь</div><div class="card__param-val">133,2 м²</div></div>
+                                <div><div class="card__param-label">Высота потолков</div><div class="card__param-val">3,5 м</div></div>
+                                <div><div class="card__param-label">Электр. мощность</div><div class="card__param-val">20 кВт</div></div>
+                                <div><div class="card__param-label">Входные группы</div><div class="card__param-val">2 входа</div></div>
+                            </div>
+                            <div class="card__divider"></div>
+                            <div class="card__advantages">
+                                <div class="card__adv-item">Чистовая отделка</div>
+                                <div class="card__adv-item">Вентиляционный канал и приточка</div>
+                                <div class="card__adv-item">ЖК «Палацио» — сдан, заселён</div>
+                            </div>
+                        </div>
+                        <div class="card__footer">
+                            <a href="#contact" class="card__btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </article>
+                    
+                    <!-- CARD 2 -->
+                    <article class="card reveal">
+                        <div class="card__img">
+                            <div class="card__img-placeholder">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                            </div>
+                            <span class="card__badge">Центральный район</span>
+                        </div>
+                        <div class="card__body">
+                            <div class="card__address">Кирочная улица, 6</div>
+                            <div class="card__metro">Чернышевская</div>
+                            <div class="card__params">
+                                <div><div class="card__param-label">Площадь</div><div class="card__param-val">156,1 м²</div></div>
+                                <div><div class="card__param-label">Высота потолков</div><div class="card__param-val">3,5 м</div></div>
+                                <div><div class="card__param-label">Электр. мощность</div><div class="card__param-val">15 кВт</div></div>
+                                <div><div class="card__param-label">Входные группы</div><div class="card__param-val">2 входа</div></div>
+                            </div>
+                            <div class="card__divider"></div>
+                            <div class="card__advantages">
+                                <div class="card__adv-item">Ремонт от предыдущего арендатора</div>
+                                <div class="card__adv-item">Вентиляционный канал</div>
+                                <div class="card__adv-item">Центр города, высокий трафик</div>
+                            </div>
+                        </div>
+                        <div class="card__footer">
+                            <a href="#contact" class="card__btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </article>
+                    
+                    <!-- CARD 3 -->
+                    <article class="card reveal">
+                        <div class="card__img">
+                            <div class="card__img-placeholder">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                            </div>
+                            <span class="card__badge">Приморский район</span>
+                        </div>
+                        <div class="card__body">
+                            <div class="card__address">Комендантский пр., 55к1</div>
+                            <div class="card__metro">Комендантский проспект</div>
+                            <div class="card__params">
+                                <div><div class="card__param-label">Площадь</div><div class="card__param-val">118,9 м²</div></div>
+                                <div><div class="card__param-label">Высота потолков</div><div class="card__param-val">3,5 м</div></div>
+                                <div><div class="card__param-label">Электр. мощность</div><div class="card__param-val">35 кВт</div></div>
+                                <div><div class="card__param-label">Входные группы</div><div class="card__param-val">2 входа</div></div>
+                            </div>
+                            <div class="card__divider"></div>
+                            <div class="card__advantages">
+                                <div class="card__adv-item">Чистовая отделка</div>
+                                <div class="card__adv-item">Вентиляционный канал и приточка</div>
+                                <div class="card__adv-item">ЖК «YOGA» — крупный жилой комплекс</div>
+                            </div>
+                        </div>
+                        <div class="card__footer">
+                            <a href="#contact" class="card__btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </article>
+                    
+                    <!-- CARD 4 -->
+                    <article class="card reveal">
+                        <div class="card__img">
+                            <div class="card__img-placeholder">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                            </div>
+                            <span class="card__badge">Приморский район</span>
+                        </div>
+                        <div class="card__body">
+                            <div class="card__address">Комендантский пр., 59к1</div>
+                            <div class="card__metro">Комендантский проспект</div>
+                            <div class="card__params">
+                                <div><div class="card__param-label">Площадь</div><div class="card__param-val">84 м²</div></div>
+                                <div><div class="card__param-label">Высота потолков</div><div class="card__param-val">3,5 м</div></div>
+                                <div><div class="card__param-label">Электр. мощность</div><div class="card__param-val">25 кВт</div></div>
+                                <div><div class="card__param-label">Входные группы</div><div class="card__param-val">1 вход</div></div>
+                            </div>
+                            <div class="card__divider"></div>
+                            <div class="card__advantages">
+                                <div class="card__adv-item">Чистовая отделка</div>
+                                <div class="card__adv-item">Вентиляционный канал и приточка</div>
+                                <div class="card__adv-item">ЖК «YOGA» — высокий пешеходный поток</div>
+                            </div>
+                        </div>
+                        <div class="card__footer">
+                            <a href="#contact" class="card__btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </article>
+                    
+                    <!-- CARD 5 -->
+                    <article class="card reveal">
+                        <div class="card__img">
+                            <div class="card__img-placeholder">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                            </div>
+                            <span class="card__badge">Адмиралтейский район</span>
+                        </div>
+                        <div class="card__body">
+                            <div class="card__address">Парфёновская ул., 9к1</div>
+                            <div class="card__metro">Фрунзенская / Балтийская</div>
+                            <div class="card__params">
+                                <div><div class="card__param-label">Площадь</div><div class="card__param-val">119,5 м²</div></div>
+                                <div><div class="card__param-label">Высота потолков</div><div class="card__param-val">3,2 м</div></div>
+                                <div><div class="card__param-label">Электр. мощность</div><div class="card__param-val">15 кВт</div></div>
+                                <div><div class="card__param-label">Вход</div><div class="card__param-val">Отдельный</div></div>
+                            </div>
+                            <div class="card__divider"></div>
+                            <div class="card__advantages">
+                                <div class="card__adv-item">Угловое помещение, первая линия</div>
+                                <div class="card__adv-item">Витринные окна с двух сторон</div>
+                                <div class="card__adv-item">ЖК «Галактика» — сдан, заселён. 2 мокрые точки</div>
+                            </div>
+                        </div>
+                        <div class="card__footer">
+                            <a href="#contact" class="card__btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </article>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- ПРЕИМУЩЕСТВА -->
+        <section class="why" id="why">
+            <div class="container">
+                <div class="section-label reveal">Почему First Line</div>
+                <h2 class="section-title reveal">Пространства, которые<br>работают на бизнес</h2>
+                <p class="section-sub reveal">Каждый объект — тщательно отобранное помещение в жилых комплексах с высокой плотностью населения и хорошей проходимостью.</p>
+                <div class="why__grid">
+                    <div class="why__item reveal">
+                        <div class="why__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <div class="why__title">Первая линия</div>
+                        <p class="why__text">Помещения выходят на главные пешеходные бульвары и дворы ЖК — максимальная витринность и видимость для арендаторов.</p>
+                    </div>
+                    <div class="why__item reveal">
+                        <div class="why__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="why__title">Готова к въезду</div>
+                        <p class="why__text">Чистовая отделка, высота потолков 3,2–3,5 м, вентиляция и приточка — можно открывать бизнес сразу после подписания договора.</p>
+                    </div>
+                    <div class="why__item reveal">
+                        <div class="why__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        </div>
+                        <div class="why__title">Долгосрочная аренда</div>
+                        <p class="why__text">Договоры от 11 месяцев, прозрачная индексация 7% годовых — планируйте бюджет без неожиданностей.</p>
+                    </div>
+                    <div class="why__item reveal">
+                        <div class="why__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="why__title">Заселённые ЖК</div>
+                        <p class="why__text">Все комплексы полностью сданы и заселены — с первого дня аренды вы получаете лояльную аудиторию в шаговой доступности.</p>
+                    </div>
+                    <div class="why__item reveal">
+                        <div class="why__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="why__title">Сопровождение сделки</div>
+                        <p class="why__text">Помогаем с выбором помещения, переговорами и документами — от первого звонка до подписания договора.</p>
+                    </div>
+                    <div class="why__item reveal">
+                        <div class="why__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <div class="why__title">Разные районы</div>
+                        <p class="why__text">Васильевский остров, Центр, Приморский, Адмиралтейский — выберите локацию под свой формат бизнеса и целевую аудиторию.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- УСЛОВИЯ -->
+        <section class="terms" id="terms">
+            <div class="container">
+                <div class="terms__inner">
+                    <div>
+                        <div class="section-label reveal">Коммерческие условия</div>
+                        <h2 class="section-title reveal">Прозрачные условия<br>с первого дня</h2>
+                        <div class="terms__list">
+                            <div class="terms__item reveal">
+                                <div class="terms__item-num">01</div>
+                                <div class="terms__item-body">
+                                    <div class="terms__item-title">Срок аренды от 11 месяцев</div>
+                                    <div class="terms__item-text">Долгосрочные договоры — стабильность для вашего бизнеса и уверенность в планировании расходов.</div>
+                                </div>
+                            </div>
+                            <div class="terms__item reveal">
+                                <div class="terms__item-num">02</div>
+                                <div class="terms__item-body">
+                                    <div class="terms__item-title">Индексация 7% годовых</div>
+                                    <div class="terms__item-text">Фиксированный процент роста — никаких неожиданных повышений ставки в течение действия договора.</div>
+                                </div>
+                            </div>
+                            <div class="terms__item reveal">
+                                <div class="terms__item-num">03</div>
+                                <div class="terms__item-body">
+                                    <div class="terms__item-title">Назначение — свободное</div>
+                                    <div class="terms__item-text">Помещения подходят под кафе, салон красоты, фитнес, магазин, медицинский центр и другие форматы.</div>
+                                </div>
+                            </div>
+                            <div class="terms__item reveal">
+                                <div class="terms__item-num">04</div>
+                                <div class="terms__item-body">
+                                    <div class="terms__item-title">Возможность увеличения кВт</div>
+                                    <div class="terms__item-text">На ряде объектов возможно увеличение электрической мощности — уточняйте при запросе.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="terms__visual reveal">
+                        <div class="terms__stat">
+                            <div class="terms__stat-val">5 объектов</div>
+                            <div class="terms__stat-label">В актуальном портфеле</div>
+                        </div>
+                        <div class="terms__stat">
+                            <div class="terms__stat-val">84–156 м²</div>
+                            <div class="terms__stat-label">Диапазон площадей</div>
+                        </div>
+                        <div class="terms__stat">
+                            <div class="terms__stat-val">15–35 кВт</div>
+                            <div class="terms__stat-label">Электрическая мощность</div>
+                        </div>
+                        <div class="terms__stat">
+                            <div class="terms__stat-val">3,2–3,5 м</div>
+                            <div class="terms__stat-label">Высота потолков</div>
+                        </div>
+                        <div class="terms__stat">
+                            <div class="terms__stat-val">7%</div>
+                            <div class="terms__stat-label">Индексация в год</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA -->
+        <section class="cta-section" id="contact">
+            <div class="container--narrow">
+                <div class="section-label">Связаться с нами</div>
+                <h2 class="section-title">Подберём подходящее помещение для вас</h2>
+                <p class="section-sub">Оставьте заявку — мы свяжемся в течение рабочего дня, ответим на вопросы и организуем показ.</p>
+                <form class="cta__form" onsubmit="handleSubmit(event)">
+                    <input class="cta__input" type="tel" placeholder="Ваш телефон" required>
+                        <button class="cta__submit" type="submit">Оставить заявку</button>
+                </form>
+                <p style="margin-top:var(--space-6);font-size:var(--text-xs);color:rgba(245,240,232,0.3);">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных</p>
+            </div>
+        </section>
+        
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__inner">
+                    <div>
+                        <div class="footer__brand">FIRST <span>LINE</span></div>
+                        <div class="footer__tagline">Аренда коммерческих помещений · Санкт-Петербург</div>
+                    </div>
+                    <div>
+                        <div class="footer__col-title">Объекты</div>
+                        <div class="footer__links">
+                            <a href="#objects">26-я линия В.О., 7</a>
+                            <a href="#objects">Кирочная, 6</a>
+                            <a href="#objects">Комендантский пр., 55к1</a>
+                            <a href="#objects">Комендантский пр., 59к1</a>
+                            <a href="#objects">Парфёновская, 9к1</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="footer__col-title">Разделы</div>
+                        <div class="footer__links">
+                            <a href="#why">Преимущества</a>
+                            <a href="#terms">Условия аренды</a>
+                            <a href="#contact">Связаться</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__bottom">
+                    <span class="footer__copy">© 2026 FIRST LINE. Все права защищены.</span>
+                    <span class="footer__copy">Санкт-Петербург, 2026</span>
+                </div>
+            </div>
+        </footer>
+        
+        <script>
+            // Nav scroll effect
+            const nav = document.getElementById('nav');
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 60);
+            }, { passive: true });
+            
+            // Reveal on scroll
+            const revealEls = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transitionDelay = (i % 4) * 0.08 + 's';
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => observer.observe(el));
+            
+            // Form submit
+            function handleSubmit(e) {
+                e.preventDefault();
+                const btn = e.target.querySelector('.cta__submit');
+                btn.textContent = '✓ Заявка отправлена!';
+                btn.style.background = '#4ade80';
+                btn.disabled = true;
+            }
+        </script>
+    </body>
+</html>
+
