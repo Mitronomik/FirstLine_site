@@ -53,6 +53,32 @@
                                 .nav.scrolled{background:rgba(249,247,244,0.94);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,0.07);}
                                 .nav__logo{font-family:var(--font-display);font-size:1.55rem;font-weight:700;letter-spacing:0.04em;color:var(--color-text);}
                                 .nav__logo span{color:var(--color-accent-gold);}
+                                .nav:not(.scrolled) .nav__logo {
+                                    color: #f5f0e8;
+                                    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+                                }
+                                
+                                .nav:not(.scrolled) .nav__logo span {
+                                    color: var(--color-accent-gold);
+                                }
+                                
+                                .nav:not(.scrolled) .nav__links a {
+                                    color: rgba(245, 240, 232, 0.72);
+                                }
+                                
+                                .nav:not(.scrolled) .nav__links a:hover {
+                                    color: #f5f0e8;
+                                }
+                                
+                                .nav:not(.scrolled) .nav__cta {
+                                    background: rgba(245, 240, 232, 0.10);
+                                    color: #f5f0e8;
+                                    border: 1px solid rgba(245, 240, 232, 0.16);
+                                }
+                                
+                                .nav:not(.scrolled) .nav__cta:hover {
+                                    background: rgba(245, 240, 232, 0.18);
+                                }
                                 .nav__links{display:flex;gap:var(--space-8);align-items:center;}
                                 .nav__links a{font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);}
                                 .nav__links a:hover{color:var(--color-text);}
@@ -239,7 +265,7 @@
                     <!-- CARD 1 -->
                     <article class="card reveal">
                         <div class="card__img">
-                            <img class="card__img-photo" src="assets/images/object-1.jpg" alt="Коммерческое помещение FIRST LINE, объект 1" loading="lazy" decoding="async">
+                            <img class="card__img-photo" src="assets/images/object-1.png" alt="Коммерческое помещение FIRST LINE, объект 1" loading="lazy" decoding="async">
                             <span class="card__badge">Васильевский остров</span>
                         </div>
                         <div class="card__body">
@@ -266,7 +292,7 @@
                     <!-- CARD 2 -->
                     <article class="card reveal">
                         <div class="card__img">
-                            <img class="card__img-photo" src="assets/images/object-2.jpg" alt="Коммерческое помещение FIRST LINE, объект 2" loading="lazy" decoding="async">
+                            <img class="card__img-photo" src="assets/images/object-2.png" alt="Коммерческое помещение FIRST LINE, объект 2" loading="lazy" decoding="async">
                             <span class="card__badge">Центральный район</span>
                         </div>
                         <div class="card__body">
@@ -293,7 +319,7 @@
                     <!-- CARD 3 -->
                     <article class="card reveal">
                         <div class="card__img">
-                            <img class="card__img-photo" src="assets/images/object-3.jpg" alt="Коммерческое помещение FIRST LINE, объект 3" loading="lazy" decoding="async">
+                            <img class="card__img-photo" src="assets/images/object-3.png" alt="Коммерческое помещение FIRST LINE, объект 3" loading="lazy" decoding="async">
                             <span class="card__badge">Приморский район</span>
                         </div>
                         <div class="card__body">
@@ -320,7 +346,7 @@
                     <!-- CARD 4 -->
                     <article class="card reveal">
                         <div class="card__img">
-                            <img class="card__img-photo" src="assets/images/object-4.jpg" alt="Коммерческое помещение FIRST LINE, объект 4" loading="lazy" decoding="async">
+                            <img class="card__img-photo" src="assets/images/object-4.png" alt="Коммерческое помещение FIRST LINE, объект 4" loading="lazy" decoding="async">
                             <span class="card__badge">Приморский район</span>
                         </div>
                         <div class="card__body">
@@ -347,7 +373,7 @@
                     <!-- CARD 5 -->
                     <article class="card reveal">
                         <div class="card__img">
-                            <img class="card__img-photo" src="assets/images/object-5.jpg" alt="Коммерческое помещение FIRST LINE, объект 5" loading="lazy" decoding="async">
+                            <img class="card__img-photo" src="assets/images/object-5.png" alt="Коммерческое помещение FIRST LINE, объект 5" loading="lazy" decoding="async">
                             <span class="card__badge">Адмиралтейский район</span>
                         </div>
                         <div class="card__body">
