@@ -525,12 +525,13 @@
                 <h2 class="section-title">Подберём подходящее помещение для вас</h2>
                 <p class="section-sub">Оставьте заявку — мы свяжемся в течение рабочего дня, ответим на вопросы и организуем показ.</p>
                 <form class="cta__form" action="send.php" method="post">
-                    <input class="cta__input" type="tel" name="phone" placeholder="Ваш телефон" autocomplete="tel" required>
-                    <label class="cta__honeypot" aria-hidden="true">
-                        Не заполняйте это поле
-                        <input type="text" name="website" tabindex="-1" autocomplete="off">
-                    </label>
-                    <button class="cta__submit" type="submit">Оставить заявку</button>
+                    <input class="cta__input" type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
+                        <input class="cta__input" type="tel" name="phone" placeholder="Ваш телефон" autocomplete="tel" required>
+                            <label class="cta__honeypot" aria-hidden="true">
+                                Не заполняйте это поле
+                                <input type="text" name="website" tabindex="-1" autocomplete="off">
+                            </label>
+                            <button class="cta__submit" type="submit">Оставить заявку</button>
                 </form>
                 <p style="margin-top:var(--space-6);font-size:var(--text-xs);color:rgba(245,240,232,0.3);">Нажимая кнопку, вы соглашаетесь с <a class="cta__privacy-link" href="privacy.html">политикой обработки персональных данных</a></p>
             </div>

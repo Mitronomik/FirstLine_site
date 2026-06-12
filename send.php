@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-$to = "ВАША_ПОЧТА@yandex.ru";
-$from = "no-reply@ВАШ-ДОМЕН.ru";
+$to = "streetretailspb@ya.ru";
+$from = "streetsretailspb@streetsretailspb.ru";
 
 function render_response(string $title, string $message, bool $success): void
 {
@@ -21,15 +21,20 @@ if ($honeypot !== '') {
     render_response('Заявка принята', 'Спасибо! Если данные корректны, мы свяжемся с вами в течение рабочего дня.', true);
 }
 
+$name = trim((string)($_POST['name'] ?? ''));
 $phone = trim((string)($_POST['phone'] ?? ''));
 $digits = preg_replace('/\D+/', '', $phone) ?? '';
+
+if ($name === '' || mb_strlen($name) < 2 || mb_strlen($name) > 80) {
+    render_response('Проверьте имя', 'Укажите имя и отправьте заявку ещё раз.', false);
+}
 
 if ($phone === '' || strlen($digits) < 10 || strlen($digits) > 15 || !preg_match('/^[0-9+()\s\-]{7,25}$/u', $phone)) {
     render_response('Проверьте номер телефона', 'Укажите корректный номер телефона и отправьте заявку ещё раз.', false);
 }
 
 $subject = 'Заявка FIRST LINE';
-$body = "Новая заявка с сайта FIRST LINE\n\nТелефон: {$phone}\nДата: " . date('d.m.Y H:i:s') . "\n";
+$body = "Новая заявка с сайта FIRST LINE\n\nИмя: {$name}\nТелефон: {$phone}\nДата: " . date('d.m.Y H:i:s') . "\n";
 $headers = [
     'From: FIRST LINE <' . $from . '>',
     'Reply-To: ' . $from,
@@ -41,7 +46,7 @@ $headers = [
 $sent = mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers));
 
 if ($sent) {
-    render_response('Заявка отправлена', 'Спасибо! Мы получили ваш номер и свяжемся с вами в течение рабочего дня.', true);
+    render_response('Заявка отправлена', 'Спасибо! Мы получили ваши данные и свяжемся с вами в течение рабочего дня.', true);
 }
 
 render_response('Не удалось отправить заявку', 'Письмо не отправилось. Пожалуйста, попробуйте ещё раз позже или свяжитесь с нами другим удобным способом.', false);
